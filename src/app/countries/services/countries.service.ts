@@ -12,9 +12,9 @@ import { Region } from '../interfaces/region.type';
 })
 export class CountriesService {
 
-  private URL:string="https://restcountries.com/v3.1";
+  private URL:string=environment.apiUrl;
   // private URL:string="https://countryapi.io/api/all";
-  private API_KEY=environment.api_key;
+  //private API_KEY=environment.api_key;
 
   public cacheStore:cacheStore={
     byCapital:{term:'',countries:[]},
