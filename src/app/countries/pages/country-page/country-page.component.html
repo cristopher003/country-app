@@ -5,6 +5,7 @@
     </div>
 </ng-template>
 
+
 <div *ngIf="country;else loading">
     <div class="row">
         <div class="col-12">
@@ -13,53 +14,208 @@
     </div>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-6 col-md-6">
             <h3>Bandera</h3>
             <img class="img-thumbnail" [src]="country.flags.svg" [alt]="country.name.common">
         </div>
-        <div class="col">
-            <h3>Informacion</h3>
-            <ul class="list-group">
-                <li
-                    class="list-group-item d-flex justify-content-between align-items-center active">
-                    Poblacion
+        <div class="col-6 col-md-6">
+            <h3>Escudo</h3>
+            <img  class="img-thumbnail" src="{{country.coatOfArms.png}}" alt="Escudo de Armas">
+        </div>
+
+        <div class="col-12 col-md">
+            <h3>Información</h3>
+            <!-- <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center active">
+                    Población
                     <span class="badge bg-secondary badge-pill">
                         {{country.population | number}}
                     </span>
                 </li>
-                <li
-                    class="list-group-item d-flex justify-content-between align-items-center">
-                    Codigo 
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Código 
                     <span class="badge bg-secondary badge-pill">
-                        {{country.cca3 }}
+                        {{country.cca3}}
                     </span>
                 </li>
-                <li
-                    class="list-group-item d-flex justify-content-between align-items-center disabled">
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
                     Capital
                     <span class="badge bg-secondary badge-pill">
-                        {{country.capital  }}                  
+                        {{country.capital}}                  
                     </span>
                 </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Continente
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.continents}}                  
+                    </span>
+                </li>
+            </ul> -->
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Nombre Común
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.name.common}}
+                    </span>
+                </li>
+                <li  class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Nombre Oficial
+                    <span class="badge bg-secondary badge-pill">
+                      {{country.name.official}} - {{ getValuesOf(country.name, 'nativeName')[0].official }}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Código CCA2
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.cca2}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Código CCA3
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.cca3}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Independiente
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.independent}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Miembro de la ONU
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.unMember}}
+                    </span>
+                </li>
+                <li *ngFor="let currency of getValuesOf(country,'currencies')" class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Moneda
+                    <span class="badge bg-secondary badge-pill">
+                        <!-- {{country.currencies.USD.name}} ({{country.currencies.USD.symbol}}) -->
+                        {{country.currencies}}
+                        {{ currency.name }} ({{ currency.symbol }})
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Código de Llamada
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.idd.root}}{{country.idd.suffixes[0]}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Capital
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.capital[0]}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Región
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.region}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Subregión
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.subregion}}
+                    </span>
+                </li>
+                <li *ngFor="let language of getValuesOf(country,'languages')" class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Idioma
+                    <span class="badge bg-secondary badge-pill">
+                        <!-- {{country.languages.spa}} -->
+                        {{language}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Latitud y Longitud
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.latlng[0]}}, {{country.latlng[1]}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Fronteras
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.borders.join(', ')}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Área
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.area}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Población
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.population}}
+                    </span>
+                </li>
+                <li *ngFor="let gini of getValuesOf(country,'gini')" class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Gini
+                    <span class="badge bg-secondary badge-pill">
+                        <!-- {{country.gini['2019']}} -->
+                         {{gini}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    FIFA
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.fifa}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Lado de Conducción
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.car.side}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Zona Horaria
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.timezones.join(', ')}}
+                    </span>
+                </li>
+                <!-- <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Escudo de Armas
+                    <span class="badge bg-secondary badge-pill">
+                        <img src="{{country.coatOfArms.png}}" alt="Escudo de Armas" width="30">
+                    </span>
+                </li> -->
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Inicio de la Semana
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.startOfWeek}}
+                    </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center disabled">
+                    Código Postal
+                    <span class="badge bg-secondary badge-pill">
+                        {{country.postalCode.format}}
+                    </span>
+                </li>
+                
             </ul>
+            
             
         </div>
     </div>
-
+    
     <div class="row mt-2">
-        <div class="col">
+        <div class="col-12">
             <h3>Traducciones</h3>
             <div class="d-flex flex-wrap">
-                <span class="badge bg-primary m-1"  >
+                <span class="badge bg-primary m-1">
                     {{country.translations['spa'].common}}
                 </span>
-                <span class="badge bg-primary m-1"  >
+                <span class="badge bg-primary m-1">
                     {{country.translations['ara'].common}}
                 </span>
-                <span class="badge bg-primary m-1"  >
+                <span class="badge bg-primary m-1">
                     {{country.translations.jpn.common}}
                 </span>
             </div>
         </div>
     </div>
+    
 </div>

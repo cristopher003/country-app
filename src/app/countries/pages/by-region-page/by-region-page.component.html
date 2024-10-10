@@ -1,6 +1,7 @@
-<h2>Por Capital</h2>
+<h2>Por Región</h2>
 <hr>
 
+<div>
 <div class="row">
     <div class="col text-center">
        <button *ngFor="let region of regions" (click)="searchByRegion(region)"
@@ -16,4 +17,5 @@
         <hr>
         <countries-table [countries]="countries"></countries-table>
     </div>
+</div>
 </div>

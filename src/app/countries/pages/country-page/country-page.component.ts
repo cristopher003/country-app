@@ -33,4 +33,13 @@ export class CountryPageComponent implements OnInit {
   }
 
 
+  getValuesOf(object: Record<string, any>, key: string): any[] {
+    // Verifica si el objeto tiene la clave especificada
+    if (object && key in object) {
+      // Retorna los valores del objeto correspondiente a la clave
+      return Object.values(object[key]);
+    }
+    // Si la clave no existe, retorna un arreglo vacío
+    return [];
+  }
 }

@@ -1,0 +1,31 @@
+.table img {
+    max-width: 50px; /* Tamaño máximo para la imagen */
+    height: auto;    /* Mantiene la proporción */
+  }
+  
+  .table th, .table td {
+    vertical-align: middle; /* Alineación vertical */
+    padding: 0.5rem;       /* Espaciado */
+  }
+  
+  .country-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    transition: box-shadow 0.3s;
+  }
+  
+  .country-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .country-card img {
+    max-width: 100px; /* Ajusta según tu diseño para la lista */
+    height: auto;
+  }
+  
+  .table-responsive {
+    overflow-x: auto; /* Permite desplazamiento horizontal */
+  }
+  

@@ -31,7 +31,7 @@ export class CountriesService {
   private getHttpRequest(url:string):Observable<Country[]>{
     return this.httpClient.get<Country[]>(`${url}`).
     pipe(
-      catchError(error=> of())
+      catchError(error=> of([]))
     );
   }
   searchCapital(term:string):Observable<Country[]>{

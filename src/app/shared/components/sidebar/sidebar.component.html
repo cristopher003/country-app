@@ -1,30 +1,36 @@
-<h2>Paises</h2>
 
+<h2>Paises</h2>
 <hr>
 
-<ul class="list-group">
-    <!-- <li class="list-group-item" [routerLink]="['']"
-    [routerLinkActiveOptions]="{exact:true}"
-     routerLinkActive="active" >
-      home
-    </li>
-    <li class="list-group-item" [routerLink]="['/about']"
-    routerLinkActive="active" >    
-    about</li>
+<div class="d-none d-lg-block">
+    <!-- Sidebar para pantallas grandes -->
+    <ul class="list-group">
+        <li class="list-group-item" [routerLink]="['/countries/by-capital']" routerLinkActive="active">Por Capital</li>
+        <li class="list-group-item" [routerLink]="['/countries/by-country']" routerLinkActive="active">Por País</li>
+        <li class="list-group-item" [routerLink]="['/countries/by-region']" routerLinkActive="active">Por Región</li>
+    </ul>
+</div>
 
-    <li class="list-group-item" [routerLink]="['/contact']"
-    routerLinkActive="active" >    
-    Contact</li> -->
+<div class="d-lg-none">
+    <!-- Navbar para pantallas pequeñas -->
+    <nav class="navbar navbar-expand-lg navbar-light ">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/countries/by-capital']" routerLinkActive="active">Por Capital</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/countries/by-country']" routerLinkActive="active">Por País</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/countries/by-region']" routerLinkActive="active">Por Región</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
-    <li class="list-group-item" [routerLink]="['/countries/by-capital']"
-    routerLinkActive="active" >    
-    Por Capital</li>
 
-    <li class="list-group-item" [routerLink]="['/countries/by-country']"
-    routerLinkActive="active" >    
-    Por país</li>
-
-    <li class="list-group-item" [routerLink]="['/countries/by-region']"
-    routerLinkActive="active" >    
-    Por region</li>
-</ul>
