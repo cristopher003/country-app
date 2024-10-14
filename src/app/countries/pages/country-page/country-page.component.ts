@@ -33,13 +33,32 @@ export class CountryPageComponent implements OnInit {
   }
 
 
-  getValuesOf(object: Record<string, any>, key: string): any[] {
-    // Verifica si el objeto tiene la clave especificada
-    if (object && key in object) {
-      // Retorna los valores del objeto correspondiente a la clave
-      return Object.values(object[key]);
+  getValuesOf(object: Record<string, any>, key?: string): any[] {
+    const getAllValues = (obj: Record<string, any>): any[] => {
+      const values: any[] = [];
+      for (const value of Object.values(obj)) {
+        if (typeof value === 'object' && value !== null) {
+          // Si el valor es un objeto, llama recursivamente
+          values.push(...getAllValues(value));
+        } else {
+          // Si no es un objeto, añade el valor al arreglo
+          values.push(value);
+        }
+      }
+      return values;
+    };
+  
+    // Verifica si el objeto es válido
+    if (object) {
+      // Si se proporciona una clave y existe en el objeto, retorna los valores correspondientes a esa clave
+      if (key && key in object) {
+        return getAllValues(object[key]);
+      }
+      // Si no se proporciona una clave, retorna los valores del objeto completo como un arreglo
+      return getAllValues(object);
     }
-    // Si la clave no existe, retorna un arreglo vacío
+    // Si el objeto no es válido, retorna un arreglo vacío
     return [];
   }
+  
 }
